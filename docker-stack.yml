@@ -1,0 +1,19 @@
+version: '3.7'
+
+services:
+
+    app:
+        image: ghcr.io/minjja/allsky-website:latest
+        ports:
+            - 80:80/tcp
+        configs:
+            - source: virtualsky.json
+              target: /var/www/html/virtualsky.json
+            - source: config.js
+              target: /var/www/html/config.js
+
+configs:
+    virtualsky.json:
+        external: true
+    config.js:
+        external: true
