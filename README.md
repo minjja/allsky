@@ -1,7 +1,17 @@
+
+```sh
+docker config rm config.js
+docker config create config.js etc/config.js
+```
+
+```sh
+docker pull ghcr.io/minjja/allsky-website:latest
+```
+
+```sh
 docker stack rm allsky
+```
 
-docker config rm virtualsky.json config.js
-docker config create virtualsky.json virtualsky.json
-docker config create config.js config.js
-
+```sh
 docker stack deploy --compose-file docker-stack.yml allsky
+```
