@@ -3,13 +3,53 @@ version: '3.7'
 services:
 
     app:
-        image: ghcr.io/minjja/allsky-website:latest
+        image: ghcr.io/minjja/allsky-website
         ports:
             - 80:80/tcp
         configs:
             - source: config.js
               target: /var/www/html/config.js
+        volumes:
+            - type: volume
+              source: videos
+              target: /var/www/html/videos
+            - type: volume
+              source: keograms
+              target: /var/www/html/keograms
+            - type: volume
+              source: startrails
+              target: /var/www/html/startrails
+        depends_on:
+            - ftp
+
+    ftp:
+        image: fauria/vsftpd
+        ports:
+            - 21:21/tcp
+            - 21100-21110:21100-21110/tcp
+        volumes:
+            - type: volume
+              source: videos
+              target: /home/vsftpd/videos
+            - type: volume
+              source: keograms
+              target: /home/vsftpd/keograms
+            - type: volume
+              source: startrails
+              target: /home/vsftpd/startrails
+        secrets:
+            - source: virtual_users.txt
+              target: /etc/vsftpd/virtual_users.txt
+
+volumes:
+    videos:
+    keograms:
+    startrails:
 
 configs:
     config.js:
+        external: true
+
+secrets:
+    virtual_users.txt:
         external: true
