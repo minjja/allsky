@@ -20,26 +20,25 @@ services:
               source: startrails
               target: /var/www/html/startrails
         depends_on:
-            - ftp
+            - webdav
 
-    ftp:
-        image: fauria/vsftpd
+    webdav:
+        image: k3vmcd/webdav
         ports:
-            - 21:21/tcp
-            - 21100-21110:21100-21110/tcp
+            - 8080:80
         volumes:
             - type: volume
               source: videos
-              target: /home/vsftpd/videos
+              target: /var/lib/dav/videos
             - type: volume
               source: keograms
-              target: /home/vsftpd/keograms
+              target: /var/lib/dav/keograms
             - type: volume
               source: startrails
-              target: /home/vsftpd/startrails
+              target: /var/lib/dav/startrails
         secrets:
-            - source: virtual_users.txt
-              target: /etc/vsftpd/virtual_users.txt
+            - source: htpasswd
+              target: /user.passwd
 
 volumes:
     videos:
@@ -49,7 +48,5 @@ volumes:
 configs:
     config.js:
         external: true
-
-secrets:
-    virtual_users.txt:
+    htpasswd:
         external: true

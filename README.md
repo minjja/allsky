@@ -1,22 +1,26 @@
-```sh
+
+```
+docker pull ghcr.io/minjja/allsky-website:latest
+```
+
+```
+docker pull k3vmcd/webdav
+```
+
+```
 docker config rm config.js
 docker config create config.js etc/config.js
 ```
 
-```sh
-docker secret rm virtual_users.txt
-printf "user\password" | docker secret create virtual_users.txt -
+```
+docker secret rm htpasswd
+docker run --rm k3vmcd/webdav htpasswd -nbB USER PASSWORD | docker secret create htpasswd -
 ```
 
-```sh
-docker pull fauria/vsftpd
-docker pull ghcr.io/minjja/allsky-website:latest
 ```
-
-```sh
 docker stack rm allsky
 ```
 
-```sh
+```
 docker stack deploy --compose-file docker-stack.yml allsky
 ```
