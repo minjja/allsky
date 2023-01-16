@@ -25,7 +25,7 @@ services:
         volumes:
             - type: volume
               source: media
-              target: /var/lib/dav/
+              target: /var/lib/dav/data/allsky
         secrets:
             - source: htpasswd
               target: /user.passwd
