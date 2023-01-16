@@ -11,16 +11,12 @@ services:
               target: /var/www/html/config.js
         volumes:
             - type: volume
-              source: videos
-              target: /var/www/html/videos
-            - type: volume
-              source: keograms
-              target: /var/www/html/keograms
-            - type: volume
-              source: startrails
-              target: /var/www/html/startrails
-        depends_on:
-            - webdav
+              source: media
+              target: /var/www/html/media
+        environment:
+            ALLSKY_VIDEOS: /var/www/html/media/videos
+            ALLSKY_KEOGRAMS: /var/www/html/media/keograms
+            ALLSKY_STARTRAILS: /var/www/html/media/startrails
 
     webdav:
         image: k3vmcd/webdav
@@ -28,22 +24,14 @@ services:
             - 8080:80
         volumes:
             - type: volume
-              source: videos
-              target: /var/lib/dav/videos
-            - type: volume
-              source: keograms
-              target: /var/lib/dav/keograms
-            - type: volume
-              source: startrails
-              target: /var/lib/dav/startrails
+              source: media
+              target: /var/lib/dav
         secrets:
             - source: htpasswd
               target: /user.passwd
 
 volumes:
-    videos:
-    keograms:
-    startrails:
+    media:
 
 configs:
     config.js:
