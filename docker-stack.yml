@@ -16,9 +16,9 @@ services:
               source: media
               target: /var/www/html/media
         environment:
-            ALLSKY_VIDEOS: /var/www/html/media/videos
-            ALLSKY_KEOGRAMS: /var/www/html/media/keograms
-            ALLSKY_STARTRAILS: /var/www/html/media/startrails
+            ALLSKY_VIDEOS: ../media/videos
+            ALLSKY_KEOGRAMS: ../media/keograms
+            ALLSKY_STARTRAILS: ../media/startrails
 
     webdav:
         image: k3vmcd/webdav
