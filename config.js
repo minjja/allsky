@@ -1,8 +1,8 @@
 var config = {
 	comment: "See https://github.com/thomasjacquin/allsky/wiki/allsky-website-Settings for a description of these settings",
 	title: "Astrofield",
-	imageName: "/current/tmp/image.jpg",
-	location: "Lithuania, Miežaičiai",
+	imageName: "/var/www/html/media/image.jpg",
+	location: "Lithuania",
 	latitude_longitude_comment: "latitude and longitude must be decimal numbers with OUT the trailing N, S, E, and W.",
 	latitude: 55.69384801953093,
 	longitude: 22.872974280818735,
