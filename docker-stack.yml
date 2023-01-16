@@ -30,6 +30,7 @@ services:
             - source: htpasswd
               target: /user.passwd
         environment:
+            ANONYMOUS_METHODS: GET
             AUTH_TYPE: Basic
             SSL_CERT: selfsigned
             SERVER_NAMES: allsky.cloud.cherryservers.net
