@@ -29,6 +29,10 @@ services:
         secrets:
             - source: htpasswd
               target: /user.passwd
+        environment:
+            AUTH_TYPE: Basic
+            SSL_CERT: selfsigned
+            SERVER_NAMES: allsky.cloud.cherryservers.net
 
 volumes:
     media:
