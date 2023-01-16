@@ -21,7 +21,7 @@ services:
     webdav:
         image: k3vmcd/webdav
         ports:
-            - 8080:80
+            - 443:443/tcp
         volumes:
             - type: volume
               source: media
