@@ -9,6 +9,8 @@ services:
         configs:
             - source: config.js
               target: /var/www/html/config.js
+            - source: virtualsky.json
+              target: /var/www/html/virtualsky.json
         volumes:
             - type: volume
               source: media
@@ -39,6 +41,8 @@ volumes:
 
 configs:
     config.js:
+        external: true
+    virtualsky.json:
         external: true
 
 secrets:

@@ -18,4 +18,5 @@ var config = {
 	auroraForecast: false,
 	auroraMap: "XX_need_to_update_XX",
 	intervalSeconds: 5,
+	data: '/media/data.json',
 }

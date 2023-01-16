@@ -9,7 +9,12 @@ docker pull k3vmcd/webdav
 
 ```
 docker config rm config.js
-docker config create config.js config.js
+docker config create config.js etc/config.js
+```
+
+```
+docker config rm virtualsky.json
+docker config create virtualsky.json etc/virtualsky.json
 ```
 
 ```
