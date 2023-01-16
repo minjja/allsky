@@ -36,5 +36,7 @@ volumes:
 configs:
     config.js:
         external: true
+
+secrets:
     htpasswd:
         external: true
