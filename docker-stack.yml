@@ -6,6 +6,10 @@ services:
         image: ghcr.io/minjja/allsky-website
         ports:
             - 80:80/tcp
+            - 443:443/tcp
+        secrets:
+            - source: htpasswd
+              target: /etc/apache2/.htpasswd
         configs:
             - source: config.js
               target: /var/www/html/config.js
@@ -13,31 +17,15 @@ services:
               target: /var/www/html/virtualsky.json
         volumes:
             - type: volume
-              source: media
-              target: /var/www/html/media
+              source: webdav
+              target: /var/www/webdav
         environment:
-            ALLSKY_VIDEOS: ../media/videos
-            ALLSKY_KEOGRAMS: ../media/keograms
-            ALLSKY_STARTRAILS: ../media/startrails
-
-    webdav:
-        image: k3vmcd/webdav
-        ports:
-            - 443:443/tcp
-        volumes:
-            - type: volume
-              source: media
-              target: /var/lib/dav/data/allsky
-        secrets:
-            - source: htpasswd
-              target: /user.passwd
-        environment:
-            AUTH_TYPE: Basic
-            SSL_CERT: selfsigned
-            SERVER_NAMES: allsky.cloud.cherryservers.net
+            ALLSKY_VIDEOS: ../../webdav/videos
+            ALLSKY_KEOGRAMS: ../../webdav/keograms
+            ALLSKY_STARTRAILS: ../../webdav/startrails
 
 volumes:
-    media:
+    webdav:
 
 configs:
     config.js:

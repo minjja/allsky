@@ -1,10 +1,5 @@
-
 ```
 docker pull ghcr.io/minjja/allsky-website:latest
-```
-
-```
-docker pull k3vmcd/webdav
 ```
 
 ```
@@ -19,7 +14,7 @@ docker config create virtualsky.json etc/virtualsky.json
 
 ```
 docker secret rm htpasswd
-docker run --rm k3vmcd/webdav htpasswd -nbB USER PASSWORD | docker secret create htpasswd -
+docker run --rm ghcr.io/minjja/allsky-website htpasswd -nbB USER PASSWORD | docker secret create htpasswd -
 ```
 
 ```
