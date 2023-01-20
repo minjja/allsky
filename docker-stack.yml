@@ -11,6 +11,8 @@ services:
             - source: htpasswd
               target: /etc/apache2/.htpasswd
         configs:
+            - source: php.ini
+              target: /usr/local/etc/php/php.ini
             - source: config.js
               target: /var/www/html/config.js
             - source: virtualsky.json
@@ -28,10 +30,12 @@ volumes:
     webdav:
 
 configs:
+    php.ini:
+        file: ./etc/php.ini
     config.js:
-        external: true
+        file: ./src/config.js
     virtualsky.json:
-        external: true
+        file: ./src/virtualsky.json
 
 secrets:
     htpasswd:
