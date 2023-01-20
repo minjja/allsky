@@ -30,6 +30,10 @@ volumes:
     webdav:
 
 configs:
+    privkey.pem:
+        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/privkey.pem
+    fullchain.pem:
+        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/fullchain.pem
     php.ini:
         file: ./etc/php.ini
     config.js:
