@@ -16,6 +16,12 @@ services:
               target: /var/www/html/config.js
             - source: virtualsky.json
               target: /var/www/html/virtualsky.json
+            - source: cert.pem
+              target: /etc/ssl/certs/ssl-cert-snakeoil.pem
+            - source: privkey.pem
+              target: /etc/ssl/private/ssl-cert-snakeoil.key
+            - source: fullchain.pem
+              target: /etc/apache2/ssl.crt/server-ca.crt
         volumes:
             - type: volume
               source: webdav
@@ -29,6 +35,8 @@ volumes:
     webdav:
 
 configs:
+    cert.pem:
+        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/cert.pem
     privkey.pem:
         file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/privkey.pem
     fullchain.pem:
