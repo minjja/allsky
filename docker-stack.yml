@@ -2,10 +2,21 @@ version: '3.7'
 
 services:
 
-    app:
-        image: ghcr.io/minjja/allsky-website
+    nginx:
+        image: nginx:1.23
         ports:
             - 443:443/tcp
+        configs:
+            - source: nginx.conf
+              target: /etc/nginx/conf.d/default.conf
+        secrets:
+            - source: ssl_certificate
+              target: /etc/letsencrypt/cert.pem
+            - source: ssl_certificate_key
+              target: /etc/letsencrypt/privkey.pem
+
+    app:
+        image: ghcr.io/minjja/allsky-website
         secrets:
             - source: htpasswd
               target: /etc/apache2/.htpasswd
@@ -16,12 +27,6 @@ services:
               target: /var/www/html/config.js
             - source: virtualsky.json
               target: /var/www/html/virtualsky.json
-            - source: cert.pem
-              target: /etc/ssl/certs/ssl-cert-snakeoil.pem
-            - source: privkey.pem
-              target: /etc/ssl/private/ssl-cert-snakeoil.key
-            - source: fullchain.pem
-              target: /etc/apache2/ssl.crt/server-ca.crt
         volumes:
             - type: volume
               source: webdav
@@ -35,14 +40,10 @@ volumes:
     webdav:
 
 configs:
-    cert.pem:
-        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/cert.pem
-    privkey.pem:
-        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/privkey.pem
-    fullchain.pem:
-        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/fullchain.pem
     php.ini:
         file: ./etc/php.ini
+    nginx.conf:
+        file: ./etc/nginx.conf
     config.js:
         file: ./src/config.js
     virtualsky.json:
@@ -51,3 +52,7 @@ configs:
 secrets:
     htpasswd:
         external: true
+    ssl_certificate:
+        file: ./etc/letsencrypt/live/allsky2.cloud.cherryservers.net/cert.pem
+    ssl_certificate_key:
+        file: ./etc/letsencrypt/live/allsky2.cloud.cherryservers.net/privkey.pem
