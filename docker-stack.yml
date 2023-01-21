@@ -15,11 +15,18 @@ services:
             - source: ssl_certificate_key
               target: /etc/letsencrypt/private.key
 
-    app:
-        image: ghcr.io/minjja/allsky-website
+    webdav:
+        image: ghcr.io/minjja/webdav
         secrets:
             - source: htpasswd
               target: /etc/apache2/.htpasswd
+        volumes:
+            - type: volume
+              source: webdav
+              target: /var/www/webdav
+
+    app:
+        image: ghcr.io/minjja/allsky-website
         configs:
             - source: php.ini
               target: /usr/local/etc/php/php.ini
@@ -27,10 +34,6 @@ services:
               target: /var/www/html/config.js
             - source: virtualsky.json
               target: /var/www/html/virtualsky.json
-        volumes:
-            - type: volume
-              source: webdav
-              target: /var/www/webdav
         environment:
             ALLSKY_VIDEOS: ../../webdav/videos
             ALLSKY_KEOGRAMS: ../../webdav/keograms
