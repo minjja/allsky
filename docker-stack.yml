@@ -11,9 +11,9 @@ services:
               target: /etc/nginx/conf.d/default.conf
         secrets:
             - source: ssl_certificate
-              target: /etc/letsencrypt/cert.pem
+              target: /etc/letsencrypt/cert.crt
             - source: ssl_certificate_key
-              target: /etc/letsencrypt/privkey.pem
+              target: /etc/letsencrypt/private.key
 
     app:
         image: ghcr.io/minjja/allsky-website
