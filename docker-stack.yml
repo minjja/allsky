@@ -21,8 +21,8 @@ services:
         secrets:
             - source: htpasswd
               target: /etc/apache2/.htpasswd
-            - source: webdav.anonymous:read.conf
-              target: /etc/apache2/conf-enabled/webdav.anonymous:read.conf
+            - source: webdav.anonymous.read.conf
+              target: /etc/apache2/conf-enabled/webdav.anonymous.read.conf
         volumes:
             - type: volume
               source: webdav
@@ -54,8 +54,8 @@ configs:
         file: ./src/config.js
     virtualsky.json:
         file: ./src/virtualsky.json
-    webdav.anonymous:read.conf:
-        file: ./etc/webdav.anonymous:read.conf
+    webdav.anonymous.read.conf:
+        file: ./etc/webdav.anonymous.read.conf
 
 secrets:
     htpasswd:
