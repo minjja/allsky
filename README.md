@@ -21,7 +21,7 @@ docker stack deploy --compose-file docker-stack.yml allsky
 
 ```
 docker run --rm -ti \
-    --mount source=allsky_nginx,target=/public \
+    --mount source=allsky_html,target=/public \
     certbot/certbot \
     certonly \
     --webroot --webroot-path=/public \
