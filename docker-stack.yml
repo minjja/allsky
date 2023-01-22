@@ -15,6 +15,10 @@ services:
               target: /etc/letsencrypt/cert.crt
             - source: ssl_certificate_key
               target: /etc/letsencrypt/private.key
+        volumes:
+            - type: tmpfs
+              source: html
+              target: /usr/share/nginx/html
 
     webdav:
         image: ghcr.io/minjja/webdav
@@ -23,7 +27,7 @@ services:
               target: /etc/apache2/.htpasswd
         configs:
             - source: webdav.anonymous.read.conf
-              target: /etc/apache2/conf-enabled/webdav.anonymous.read.conf
+              target: /etc/apache2/conf-enabled/001-webdav.anonymous.read.conf
         volumes:
             - type: volume
               source: webdav
@@ -44,6 +48,7 @@ services:
             ALLSKY_STARTRAILS: ../../webdav/startrails
 
 volumes:
+    html:
     webdav:
 
 configs:

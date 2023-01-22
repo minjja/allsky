@@ -1,10 +1,14 @@
 ```
-docker pull ghcr.io/minjja/allsky-website:latest
+docker pull ghcr.io/minjja/allsky-website
+```
+
+```
+docker pull ghcr.io/minjja/webdav
 ```
 
 ```
 docker secret rm htpasswd
-docker run --rm ghcr.io/minjja/allsky-website htpasswd -nbB USER PASSWORD | docker secret create htpasswd -
+docker run --rm htppd htpasswd -nbB USER PASSWORD | docker secret create htpasswd -
 ```
 
 ```
