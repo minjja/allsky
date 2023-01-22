@@ -18,3 +18,15 @@ docker stack rm allsky
 ```
 docker stack deploy --compose-file docker-stack.yml allsky
 ```
+
+```
+docker run --rm -ti \
+    --mount source=allsky_nginx,target=/public \
+    certbot/certbot \
+    certonly \
+    --webroot --webroot-path=/public \
+    --register-unsafely-without-email \
+    --agree-tos \
+    -d allsky2.cloud.cherryservers.net \
+    -v
+```
