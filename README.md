@@ -27,6 +27,6 @@ docker run --rm -ti \
     --webroot --webroot-path=/public \
     --register-unsafely-without-email \
     --agree-tos \
-    -d allsky2.cloud.cherryservers.net \
+    -d allsky.cloud.cherryservers.net \
     -v
 ```
