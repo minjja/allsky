@@ -21,6 +21,7 @@ services:
         secrets:
             - source: htpasswd
               target: /etc/apache2/.htpasswd
+        configs:
             - source: webdav.anonymous.read.conf
               target: /etc/apache2/conf-enabled/webdav.anonymous.read.conf
         volumes:
