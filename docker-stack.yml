@@ -16,7 +16,7 @@ services:
             - source: ssl_certificate_key
               target: /etc/letsencrypt/private.key
         volumes:
-            - type: tmpfs
+            - type: volume
               source: html
               target: /usr/share/nginx/html
 
