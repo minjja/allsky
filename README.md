@@ -8,18 +8,19 @@ docker swarm init
 ```
 
 ```
-docker pull nginx:1.23
+docker pull nginx
+docker pull httpd
 docker pull ghcr.io/minjja/webdav
 docker pull ghcr.io/minjja/allsky-website
 ```
 
 ```
-git clone https://github.com/minjja/allsky.git
-cd allsky
+docker run --rm httpd htpasswd -nbB $USER $PASSWORD | docker secret create htpasswd -
 ```
 
 ```
-docker run --rm httpd htpasswd -nbB $USER $PASSWORD | docker secret create htpasswd -
+git clone https://github.com/minjja/allsky.git
+cd allsky
 ```
 
 ```
