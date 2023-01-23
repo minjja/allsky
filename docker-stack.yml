@@ -15,10 +15,6 @@ services:
               target: /etc/letsencrypt/cert.crt
             - source: ssl_certificate_key
               target: /etc/letsencrypt/private.key
-        volumes:
-            - type: volume
-              source: html
-              target: /usr/share/nginx/html
 
     webdav:
         image: ghcr.io/minjja/webdav
@@ -48,7 +44,6 @@ services:
             ALLSKY_STARTRAILS: ../../webdav/startrails
 
 volumes:
-    html:
     webdav:
 
 configs:
