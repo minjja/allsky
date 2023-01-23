@@ -24,7 +24,18 @@ docker run --rm httpd htpasswd -nbB $USER $PASSWORD | docker secret create htpas
 
 ```
 docker-compose up -d httpd
-docker-compose up certbot
+```
+
+```
+docker-compose run --rm certbot certonly \
+    --agree-tos \
+    --cert-name allsky \
+    --webroot --webroot-path=/public \
+    --register-unsafely-without-email \
+    --domains allsky.cloud.cherryservers.net
+```
+
+```
 docker-compose stop
 docker-compose rm -f
 ```

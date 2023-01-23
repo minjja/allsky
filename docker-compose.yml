@@ -20,12 +20,6 @@ services:
             - type: bind
               source: ./etc/letsencrypt/
               target: /etc/letsencrypt
-        command: |
-            certonly
-            --agree-tos
-            --cert-name allsky
-            --webroot --webroot-path=/public
-            --register-unsafely-without-email
-            --domains allsky1.cloud.cherryservers.net
+        command: --help
         depends_on:
             - httpd
