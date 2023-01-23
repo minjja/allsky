@@ -8,15 +8,15 @@ services:
             - 80:80/tcp
         volumes:
             - type: bind
-              source: ./html
-              target: /var/www/html
+              source: ./html/
+              target: /usr/local/apache2/htdocs/
 
     certbot:
         image: certbot/certbot
         volumes:
             - type: bind
-              source: ./html
-              target: /public
+              source: ./html/
+              target: /public/
             - type: bind
               source: ./etc/letsencrypt/
               target: /etc/letsencrypt
