@@ -67,6 +67,6 @@ secrets:
     htpasswd:
         external: true
     ssl_certificate:
-        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/cert.pem
+        file: ./etc/letsencrypt/live/allsky/cert.pem
     ssl_certificate_key:
-        file: ./etc/letsencrypt/live/allsky.cloud.cherryservers.net/privkey.pem
+        file: ./etc/letsencrypt/live/allsky/privkey.pem
