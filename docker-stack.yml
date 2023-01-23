@@ -29,7 +29,7 @@ services:
         volumes:
             - type: volume
               source: webdav
-              target: /var/www/webdav
+              target: /var/www/html
 
     website:
         image: ghcr.io/minjja/allsky-website
