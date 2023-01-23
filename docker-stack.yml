@@ -44,6 +44,10 @@ services:
             ALLSKY_VIDEOS: ../../webdav/videos
             ALLSKY_KEOGRAMS: ../../webdav/keograms
             ALLSKY_STARTRAILS: ../../webdav/startrails
+        volumes:
+            - type: volume
+              source: webdav
+              target: /var/www/webdav
 
 volumes:
     webdav:
