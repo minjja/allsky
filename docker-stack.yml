@@ -20,7 +20,7 @@ services:
         image: ghcr.io/minjja/webdav
         secrets:
             - source: htpasswd
-              target: /etc/apache2/.htpasswd
+              target: /usr/local/apache2/.htpasswd
         volumes:
             - type: volume
               source: webdav
