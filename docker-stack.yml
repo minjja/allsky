@@ -43,7 +43,7 @@ services:
             ALLSKY_STARTRAILS: ../../webdav/startrails
         volumes:
             - type: volume
-              source: webdav
+              source: uploads
               target: /var/www/webdav
 
 volumes:
