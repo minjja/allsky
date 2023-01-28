@@ -10,6 +10,7 @@ docker swarm init
 ```
 docker pull nginx
 docker pull httpd
+docker pull certbot/certbot
 docker pull ghcr.io/minjja/webdav
 docker pull ghcr.io/minjja/allsky-website
 ```
@@ -36,7 +37,7 @@ docker stack deploy --compose-file docker-stack.yml allsky
 ```
 
 ```
-docker run --rm -v allsky_html:/public certbot/certbot certonly \
+docker run --rm -v allsky_html:/public -v ${PWD}/ssl:/etc/letsencrypt certbot/certbot certonly \
     --agree-tos \
     --cert-name allsky \
     --webroot --webroot-path=/public \
