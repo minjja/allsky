@@ -21,9 +21,13 @@ services:
         secrets:
             - source: htpasswd
               target: /usr/local/apache2/.htpasswd
+            - source: ssl_certificate_key
+              target: /usr/local/apache2/ssl/key.pem
+            - source: ssl_certificate
+              target: /usr/local/apache2/ssl/cert.pem
         volumes:
             - type: volume
-              source: webdav
+              source: uploads
               target: /usr/local/apache2/uploads/
 
     website:
@@ -43,7 +47,7 @@ services:
               target: /var/www/webdav
 
 volumes:
-    webdav:
+    uploads:
 
 configs:
     nginx.conf:
