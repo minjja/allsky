@@ -1,6 +1,6 @@
 ```
 apt update
-apt install -y docker.io docker-compose git
+apt install -y docker.io git
 ```
 
 ```
@@ -24,25 +24,24 @@ cd allsky
 ```
 
 ```
-docker-compose up -d httpd
+docker run --rm -v ${PWD}/ssl/live/allsky:/ssl httpd \
+    openssl req -x509 -newkey rsa:2048 -days 1000 -nodes \
+    -keyout /ssl/privkey.pem \
+    -out /ssl/cert.pem \
+    -subj "/CN=localhost:-selfsigned"
 ```
 
 ```
-docker-compose run --rm certbot certonly \
+docker stack deploy --compose-file docker-stack.yml allsky
+```
+
+```
+docker run --rm -v allsky_html:/public certbot/certbot certonly \
     --agree-tos \
     --cert-name allsky \
     --webroot --webroot-path=/public \
     --register-unsafely-without-email \
     --domains allsky.cloud.cherryservers.net
-```
-
-```
-docker-compose stop
-docker-compose rm -f
-```
-
-```
-docker stack deploy --compose-file docker-stack.yml allsky
 ```
 
 ```

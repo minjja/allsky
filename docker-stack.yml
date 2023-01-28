@@ -12,9 +12,13 @@ services:
               target: /etc/nginx/conf.d/default.conf
         secrets:
             - source: ssl_certificate
-              target: /etc/letsencrypt/cert.crt
+              target: /etc/ssl/cert.pem
             - source: ssl_certificate_key
-              target: /etc/letsencrypt/private.key
+              target: /etc/ssl/key.pem
+        volumes:
+            - type: volume
+              source: html
+              target: /usr/share/nginx/html
 
     webdav:
         image: ghcr.io/minjja/webdav
@@ -46,6 +50,7 @@ services:
               target: /var/www/webdav
 
 volumes:
+    html:
     uploads:
 
 configs:
@@ -62,6 +67,6 @@ secrets:
     htpasswd:
         external: true
     ssl_certificate:
-        file: ./etc/letsencrypt/live/allsky/cert.pem
+        file: ./ssl/live/allsky/cert.pem
     ssl_certificate_key:
-        file: ./etc/letsencrypt/live/allsky/privkey.pem
+        file: ./ssl/live/allsky/privkey.pem
