@@ -18,6 +18,9 @@ services:
 
     webdav:
         image: ghcr.io/minjja/webdav
+        configs:
+            - source: user.conf
+              target: /usr/local/apache2/conf/user.conf
         secrets:
             - source: htpasswd
               target: /usr/local/apache2/.htpasswd
@@ -46,6 +49,8 @@ volumes:
     uploads:
 
 configs:
+    user.conf:
+        file: ./etc/user.conf
     nginx.conf:
         file: ./etc/nginx.conf
     config.js:
