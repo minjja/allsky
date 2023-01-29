@@ -30,8 +30,8 @@ services:
               target: /usr/local/apache2/.htpasswd
         volumes:
             - type: volume
-              source: uploads
-              target: /usr/local/apache2/uploads
+              source: webdav
+              target: /usr/local/apache2/uploads/webdav
 
     website:
         image: ghcr.io/minjja/allsky-website
@@ -46,12 +46,12 @@ services:
             ALLSKY_STARTRAILS: ../../webdav/startrails
         volumes:
             - type: volume
-              source: uploads
+              source: webdav
               target: /var/www/webdav
 
 volumes:
     html:
-    uploads:
+    webdav:
 
 configs:
     user.conf:
