@@ -7,7 +7,6 @@ services:
         ports:
             - 80:80/tcp
             - 443:443/tcp
-            - 8443:8443/tcp
         configs:
             - source: nginx.conf
               target: /etc/nginx/conf.d/default.conf
@@ -23,9 +22,18 @@ services:
 
     webdav:
         image: ghcr.io/minjja/webdav
+        ports:
+            - 8443:8443/tcp
+        configs:
+            - source: user.conf
+              target: /usr/local/apache2/conf/user.conf
         secrets:
             - source: htpasswd
               target: /usr/local/apache2/.htpasswd
+            - source: ssl_certificate
+              target: /usr/local/apache2/ssl/cert.pem
+            - source: ssl_certificate_key
+              target: /usr/local/apache2/ssl/key.pem
         volumes:
             - type: volume
               source: uploads
@@ -52,6 +60,8 @@ volumes:
     uploads:
 
 configs:
+    user.conf:
+        file: ./etc/user.conf
     nginx.conf:
         file: ./etc/nginx.conf
     config.js:
