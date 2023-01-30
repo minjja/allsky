@@ -23,7 +23,7 @@ services:
     webdav:
         image: ghcr.io/minjja/webdav
         ports:
-            - 8443:8443/tcp
+            - 8443:443/tcp
         configs:
             - source: user.conf
               target: /usr/local/apache2/conf/user.conf
