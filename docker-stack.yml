@@ -36,8 +36,8 @@ services:
               target: /usr/local/apache2/ssl/key.pem
         volumes:
             - type: volume
-              source: uploads
-              target: /usr/local/apache2/uploads
+              source: media
+              target: /usr/local/apache2/uploads/media
 
     website:
         image: ghcr.io/minjja/allsky-website
@@ -52,12 +52,12 @@ services:
             ALLSKY_STARTRAILS: ../media/startrails
         volumes:
             - type: volume
-              source: uploads
+              source: media
               target: /var/www/html/media
 
 volumes:
     html:
-    uploads:
+    media:
 
 configs:
     user.conf:
