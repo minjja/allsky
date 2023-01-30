@@ -36,8 +36,8 @@ services:
               target: /usr/local/apache2/ssl/key.pem
         volumes:
             - type: volume
-              source: media
-              target: /usr/local/apache2/uploads/media
+              source: uploads
+              target: /usr/local/apache2/uploads
 
     website:
         image: ghcr.io/minjja/allsky-website
@@ -47,17 +47,17 @@ services:
             - source: virtualsky.json
               target: /var/www/html/virtualsky.json
         environment:
-            ALLSKY_VIDEOS: ../media/videos
-            ALLSKY_KEOGRAMS: ../media/keograms
-            ALLSKY_STARTRAILS: ../media/startrails
+            ALLSKY_VIDEOS: ../uploads/allsky/videos
+            ALLSKY_KEOGRAMS: ../uploads/allsky/keograms
+            ALLSKY_STARTRAILS: ../uploads/allsky/startrails
         volumes:
             - type: volume
-              source: media
-              target: /var/www/html/media
+              source: uploads
+              target: /var/www/html/uploads
 
 volumes:
     html:
-    media:
+    uploads:
 
 configs:
     user.conf:
