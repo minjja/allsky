@@ -7,6 +7,7 @@ services:
         ports:
             - 80:80/tcp
             - 443:443/tcp
+            - 8443:8443/tcp
         configs:
             - source: nginx.conf
               target: /etc/nginx/conf.d/default.conf
@@ -22,9 +23,6 @@ services:
 
     webdav:
         image: ghcr.io/minjja/webdav
-        configs:
-            - source: user.conf
-              target: /usr/local/apache2/conf/user.conf
         secrets:
             - source: htpasswd
               target: /usr/local/apache2/.htpasswd
@@ -41,21 +39,19 @@ services:
             - source: virtualsky.json
               target: /var/www/html/virtualsky.json
         environment:
-            ALLSKY_VIDEOS: ../../webdav/videos
-            ALLSKY_KEOGRAMS: ../../webdav/keograms
-            ALLSKY_STARTRAILS: ../../webdav/startrails
+            ALLSKY_VIDEOS: ../media/videos
+            ALLSKY_KEOGRAMS: ../media/keograms
+            ALLSKY_STARTRAILS: ../media/startrails
         volumes:
             - type: volume
               source: uploads
-              target: /var/www/webdav
+              target: /var/www/html/media
 
 volumes:
     html:
     uploads:
 
 configs:
-    user.conf:
-        file: ./etc/user.conf
     nginx.conf:
         file: ./etc/nginx.conf
     config.js:
