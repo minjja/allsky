@@ -25,7 +25,7 @@ services:
         ports:
             - 8443:443/tcp
         configs:
-            - source: user.conf
+            - source: webdav.conf
               target: /usr/local/apache2/conf/user.conf
         secrets:
             - source: htpasswd
@@ -60,8 +60,8 @@ volumes:
     uploads:
 
 configs:
-    user.conf:
-        file: ./etc/user.conf
+    webdav.conf:
+        file: ./etc/webdav.conf
     nginx.conf:
         file: ./etc/nginx.conf
     config.js:
