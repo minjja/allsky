@@ -1,0 +1,27 @@
+###
+POST https://www.thomasjacquin.com/allsky-map/postToMap.php
+Accept: application/json
+Content-Type:application/json
+
+{
+    "location": "Lithuania",
+    "owner": "Astrofield Observatory",
+    "latitude": "55.551594",
+    "longitude": "22.811806",
+    "website_url": "https://allsky.cloud.cherryservers.net/",
+    "image_url": "https://allsky.cloud.cherryservers.net/uploads/allsky/image.jpg",
+    "camera": "Raspberry Pi V2 Camera",
+    "lens": "ArduCam B0180",
+    "computer": "Raspberry Pi 3 Model B+",
+    "machine_id": "5e661d085404407d9c90e1568d5061d6"
+}
+
+###
+POST https://www.thomasjacquin.com/allsky-map/postToMap.php
+Accept: application/json
+Content-Type:application/json
+
+{
+    "website_url": "DELETE",
+    "machine_id": "5e661d085404407d9c90e1568d5061d6"
+}
