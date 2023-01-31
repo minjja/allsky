@@ -67,7 +67,6 @@ services:
         image: eclipse-mosquitto
         ports:
             - 1883:1883/tcp
-            - 9001:9001/tcp
         configs:
             - source: mosquitto.conf
               target: /mosquitto/config/mosquitto.conf
